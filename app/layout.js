@@ -1,5 +1,9 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import UserContextProvider from "@/context/user-context";
+import { Header } from "@radix-ui/react-accordion";
+import Navbar from "@/components/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,9 +25,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased p-1`}
       >
-        {children}
+        <UserContextProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="container mx-auto">
+              <Navbar/>
+              {children}
+            </div>
+          </ThemeProvider>
+        </UserContextProvider>
       </body>
     </html>
   );
