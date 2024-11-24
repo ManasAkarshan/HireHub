@@ -18,14 +18,14 @@ const ResumeChecker = () => {
     if (file) {
       setLoading(true);
       const res = await axios({
-        url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCQTwFmZHG1GbW0DVjLJwR3ri8_Mpy3T0A",
+        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.NEXT_PUBLIC_GEMINI_API}`,
         method: "post",
         data: {
           contents: [
             {
               parts: [
                 {
-                  text: `Just assume i have uploaded a resume (which i have obviously not so just assume) and generate me few points to add and improve(just assume any resume) for my resume for domain ${inp} note: don't use assume word in the output you just assume there is an actual file generate at least 400 words`,
+                  text: `Just assume i have uploaded a resume (which i have obviously not so just assume) and generate me few points to add and improve(just assume any resume) for my resume for domain ${inp} note: I am telling you to assume but while generating answer you will act like your have some original resume`,
                 },
               ],
             },
