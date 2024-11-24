@@ -42,6 +42,14 @@ const Navbar = () => {
                 </Button>
               </Link>
             )}
+            {user?.user_metadata.role === "candidate" && (
+              <Link href="/resume-checker">
+                <Button variant="destructive" className="rounded-full">
+                  <PenBox size={20} className="sm:mr-2"></PenBox>
+                  <p className="hidden sm:block">AI Check Resume</p>
+                </Button>
+              </Link>
+            )}
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger>
